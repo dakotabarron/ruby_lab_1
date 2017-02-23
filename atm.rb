@@ -6,11 +6,13 @@ end
 
 def getBalanceFromFileAsFloat
    balanceFile = File.open("balance.txt", "r")
-   return (balanceFile.read).to_f
+   balanceToReturn = (balanceFile.read).to_f
+   balanceFile.close
+   return balanceToReturn
 end
 
 def clearScreen
-   system("clear")
+   system("clear") # this is changed depending on the intended operating system
 end
 
 clearScreen
@@ -21,5 +23,3 @@ if !File.exist?("balance.txt") # if file does not exist
 else # balance.txt exists
    balance = getBalanceFromFileAsFloat # so just read its value into balance
 end
-
-print "Balance is: ", balance, "\n"
