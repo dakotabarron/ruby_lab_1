@@ -35,6 +35,34 @@ def printBalance
    print "Your current balance is $", getBalanceFromFileAsFloat, "\n"
 end
 
+def withdraw
+   print "Enter amount to withdraw: $"
+   amount = (gets.chomp).to_f
+   goodInput = true
+   if amount <= 0
+      goodInput = false
+   end
+   if amount > getBalanceFromFileAsFloat
+      goodInput = false
+   end
+
+   while !goodInput
+      print "\nInvalid withdraw amount\n"
+         
+      print "Enter amount to withdraw: $"
+      amount = (gets.chomp).to_f
+      goodInput = true
+      if amount <= 0
+         goodInput = false
+      end
+      if amount > getBalanceFromFileAsFloat
+         goodInput = false
+      end
+   end
+
+   updateBalanceToFile(getBalanceFromFileAsFloat - amount)
+end
+
 clearScreen
 STARTING_BALANCE = 100.0 # constant which defines the starting balance if balance.txt does not exist 
 if !File.exist?("balance.txt") # if file does not exist
@@ -53,13 +81,17 @@ while (choice != "q")
          deposit
          printBalance
       when "w"
-         print "You selected w\n"
+         withdraw
+         printBalance
       when "b"
          printBalance
       else
          print "invalid input\n"
    end
 
+   print "\nPress any key to continue..."
+   gets
+   clearScreen
    prompt
    choice = (gets.chomp).downcase   
 end
