@@ -19,13 +19,24 @@ def prompt
    print "D)eposit, W)ithdraw, B)alance, Q)uit: "
 end
 
+def getValidFloat
+   stringInput = gets.chomp
+   while (!isValidFloat(stringInput))
+      print "\nSorry, you must enter a valid float with max 2 decimal places\n"
+      print "Please try again: $"
+      stringInput = gets.chomp
+   end
+
+   return stringInput.to_f
+end
+
 def deposit
    print "Enter amount to deposit: $"
-   amount = (gets.chomp).to_f
+   amount = getValidFloat
    while amount <= 0
       print "\nAmount must be greater than 0\n"
-      print "Enter amount to deposit: $"
-      amount = (gets.chomp).to_f
+      print "Please try again: $"
+      amount = getValidFloat
    end
 
    updateBalanceToFile(getBalanceFromFileAsFloat + amount)
@@ -37,7 +48,7 @@ end
 
 def withdraw
    print "Enter amount to withdraw: $"
-   amount = (gets.chomp).to_f
+   amount = getValidFloat
    goodInput = true
    if amount <= 0
       goodInput = false
@@ -47,10 +58,10 @@ def withdraw
    end
 
    while !goodInput
-      print "\nInvalid withdraw amount\n"
+      print "\nSorry, withdraw amount must be >= 0 and <= balance\n"
          
-      print "Enter amount to withdraw: $"
-      amount = (gets.chomp).to_f
+      print "Please try again: $"
+      amount = getValidFloat
       goodInput = true
       if amount <= 0
          goodInput = false
@@ -61,6 +72,14 @@ def withdraw
    end
 
    updateBalanceToFile(getBalanceFromFileAsFloat - amount)
+end
+
+def isValidFloat(number)
+   if (number =~ /^[0-9]+\.{0,1}[0-9]{1,2}$/)
+      return true
+   else
+      return false
+   end
 end
 
 clearScreen
@@ -86,7 +105,7 @@ while (choice != "q")
       when "b"
          printBalance
       else
-         print "invalid input\n"
+         print "Sorry, you must enter one of: D, W, B, Q in upper or lower case\n"
    end
 
    print "\nPress any key to continue..."
@@ -95,3 +114,5 @@ while (choice != "q")
    prompt
    choice = (gets.chomp).downcase   
 end
+
+print "ATM exited\n"
