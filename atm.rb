@@ -19,6 +19,22 @@ def prompt
    print "D)eposit, W)ithdraw, B)alance, Q)uit: "
 end
 
+def deposit
+   print "Enter amount to deposit: $"
+   amount = (gets.chomp).to_f
+   while amount <= 0
+      print "\nAmount must be greater than 0\n"
+      print "Enter amount to deposit: $"
+      amount = (gets.chomp).to_f
+   end
+
+   updateBalanceToFile(getBalanceFromFileAsFloat + amount)
+end
+
+def printBalance
+   print "Your current balance is $", getBalanceFromFileAsFloat, "\n"
+end
+
 clearScreen
 STARTING_BALANCE = 100.0 # constant which defines the starting balance if balance.txt does not exist 
 if !File.exist?("balance.txt") # if file does not exist
@@ -34,9 +50,12 @@ choice = (gets.chomp).downcase
 while (choice != "q")
    case choice
       when "d" 
-         print "You selected d\n"
+         deposit
+         printBalance
       when "w"
          print "You selected w\n"
+      when "b"
+         printBalance
       else
          print "invalid input\n"
    end
