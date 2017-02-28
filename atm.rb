@@ -75,7 +75,7 @@ def withdraw
 end
 
 def isValidFloat(number)
-   if (number =~ /^[0-9]+\.{0,1}[0-9]{1,2}$/)
+   if (number =~ /^[0-9]*\.?[0-9]+$/)
       return true
    else
       return false
