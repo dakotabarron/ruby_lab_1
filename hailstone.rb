@@ -5,6 +5,9 @@ def getNumber
 	while userInput !=~ /^[0-9]+$/
 		print "Please enter a valid positive integer: "
 		userInput = gets.chomp
+	end
 
 	return userInput.to_i
 end
+
+getNumber
