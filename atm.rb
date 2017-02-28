@@ -1,3 +1,9 @@
+# Dakota Barron
+# Lab work 1
+# CS 440
+
+# ATM program
+
 def updateBalanceToFile(newBal) # writes a specified value to the balance.txt file
    balanceFile = File.open("balance.txt", "w") # open the file for writing
    balanceFile.puts(newBal) # write the new balance in the file
@@ -12,7 +18,7 @@ def getBalanceFromFileAsFloat # reads the balance from balance.txt and returns i
 end
 
 def clearScreen # clears the screen
-   system("clear") # this is changed depending on the intended operating system
+   system("CLS") # this is changed depending on the intended operating system
 end
 
 def prompt # prompt for the user's choice

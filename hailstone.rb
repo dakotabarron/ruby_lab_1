@@ -1,3 +1,9 @@
+# Dakota Barron
+# Lab work 1
+# CS 440
+
+# program to perform the hailstone sequence
+
 def getNumber # makes sure that the user enters a valid integer
 	print "Please enter a positive integer for which to perform the hailstone sequence: "
 	userInput = gets.chomp # get input from the user
@@ -48,5 +54,6 @@ def hailstone(sequenceCounter, lineCounter, number) # performs the hailstone seq
 end
 
 # program execution begins here
+system("CLS") # clear the screen
 number = getNumber # get the number from the user
 hailstone(0, 0, number) # perform the hailstone sequence
