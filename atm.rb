@@ -18,7 +18,9 @@ def getBalanceFromFileAsFloat # reads the balance from balance.txt and returns i
 end
 
 def clearScreen # clears the screen
-   system("CLS") # this is changed depending on the intended operating system
+  for i in (1..100)
+    print "\n"
+  end
 end
 
 def prompt # prompt for the user's choice

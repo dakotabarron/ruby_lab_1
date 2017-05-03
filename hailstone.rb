@@ -53,7 +53,13 @@ def hailstone(sequenceCounter, lineCounter, number) # performs the hailstone seq
 	hailstone(sequenceCounter, lineCounter, number) # recursively call hailstone with the updated values
 end
 
+def clearScreen
+  for i in (1..100)
+    print "\n"
+  end
+end
+
 # program execution begins here
-system("CLS") # clear the screen
+clearScreen
 number = getNumber # get the number from the user
 hailstone(0, 0, number) # perform the hailstone sequence
